@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BDR</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%2314171d'/%3E%3Ccircle cx='256' cy='256' r='180' fill='%23b3121a'/%3E%3Ccircle cx='256' cy='240' r='150' fill='%23e5242c'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0f1115">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Feeling brave?</h1>
+    <p class="sub">One button. One song. On the Echo Plus.</p>
+
+    <div class="base">
+      <button id="bdrBtn" class="big" disabled aria-describedby="why">
+        <span>PRESS<br>IF YOU<br>DARE</span>
+      </button>
+    </div>
+    <p id="why" class="why" aria-live="polite">Checking…</p>
+
+    <div id="toast" class="toast"></div>
+  </main>
+  <script>
+    // Load settings, then the Spotify keys from the main aux site, then the app. Always fresh (GitHub Pages caches ~10 min).
+    (function () {
+      var v = Date.now();
+      function load(src, cb, onerr) {
+        var s = document.createElement("script");
+        s.src = src + (src.indexOf("?") < 0 ? "?" : "&") + "v=" + v;
+        s.onload = cb; s.onerror = onerr || cb;
+        document.body.appendChild(s);
+      }
+      load("config.js", function () {
+        var url = (window.BDR_CONFIG || {}).auxConfigUrl;
+        if (url) load(url, function () { load("app.js"); }); else load("app.js");
+      });
+    })();
+  </script>
+</body>
+</html>

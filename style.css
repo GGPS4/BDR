@@ -1,0 +1,28 @@
+:root { --bg: #0f1115; --text: #f2f3f5; --muted: #9aa0ab; --red: #e5242c; --red-dark: #8f0e14; }
+* { box-sizing: border-box; }
+body { margin: 0; background: radial-gradient(circle at 50% 35%, #1c1f27, var(--bg) 70%); color: var(--text); min-height: 100vh;
+  font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+.wrap { max-width: 460px; margin: 0 auto; padding: 40px 16px 80px; text-align: center; }
+h1 { margin: 0; font-size: 1.8rem; }
+.sub { color: var(--muted); margin: 8px 0 36px; }
+
+/* The button sits in a dark housing, like a real panic button */
+.base { display: inline-grid; place-items: center; padding: 22px; border-radius: 50%;
+  background: linear-gradient(#2a2e37, #15171c); box-shadow: 0 20px 50px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.08); }
+.big { width: 260px; height: 260px; max-width: 68vw; max-height: 68vw; border-radius: 50%; border: 0;
+  background: radial-gradient(circle at 40% 30%, #ff5a5f, var(--red) 45%, #a3121a 100%);
+  color: #fff; font-family: inherit; font-size: 1.7rem; font-weight: 900; letter-spacing: .06em; line-height: 1.1;
+  text-shadow: 0 2px 0 rgba(0,0,0,.35); cursor: pointer;
+  box-shadow: 0 12px 0 var(--red-dark), 0 18px 40px rgba(229,36,44,.45);
+  transform: translateY(-6px); transition: transform .08s, box-shadow .08s, filter .2s; }
+.big:hover:not(:disabled) { filter: brightness(1.08); }
+.big:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 2px 0 var(--red-dark), 0 6px 20px rgba(229,36,44,.4); }
+.big:disabled { filter: grayscale(.85) brightness(.55); cursor: not-allowed; }
+.big:focus-visible { outline: 3px solid #fff; outline-offset: 6px; }
+
+.why { min-height: 1.5em; margin: 28px 0 0; font-weight: 600; }
+
+.toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%) translateY(120px);
+  background: #fff; color: #111; padding: 10px 16px; border-radius: 999px; font-weight: 600;
+  transition: transform .25s; max-width: 90vw; }
+.toast.show { transform: translateX(-50%) translateY(0); }
